@@ -64,7 +64,7 @@ namespace ZipSample.test
 			}
 		}
 
-		public static IEnumerable<TResult> MyOfType<TResult>(IEnumerable source)
+		public static IEnumerable<TResult> MyOfType<TResult>(this IEnumerable source)
 		{
 			var enumerator = source.GetEnumerator();
 			while (enumerator.MoveNext())

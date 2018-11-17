@@ -14,7 +14,7 @@ namespace ZipSample.test
         public void pick_integer_from_ArrayList()
         {
             var arrayList = new ArrayList { 2, "A", 6 };
-            var actual = MyLinq.MyOfType<int>(arrayList).ToList();
+            var actual = arrayList.MyOfType<int>().ToList();
 
             var expected = new List<int> { 2, 6 };
             expected.ToExpectedObject().ShouldEqual(actual);
