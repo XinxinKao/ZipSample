@@ -46,29 +46,29 @@ namespace ZipSample.test
 	    [TestMethod]
 	    public void pair_3_boys_and_5_girls()
 	    {
-		    var girls = Repository.Get5Girls();
-		    var keys = Repository.Get3Keys();
+		    //var girls = Repository.Get5Girls();
+		    //var keys = Repository.Get3Keys();
 
-		    var girlAndBoyPairs = MyZip(keys, girls).ToList();
-		    var expected = new List<Tuple<string, string>>
-		    {
-			    Tuple.Create("Jean", "Joey"),
-			    Tuple.Create("Mary", "Frank"),
-			    Tuple.Create("Karen", "Bob"),
-		    };
+		    //var girlAndBoyPairs = MyZip(keys, girls).ToList();
+		    //var expected = new List<Tuple<string, string>>
+		    //{
+			   // Tuple.Create("Jean", "Joey"),
+			   // Tuple.Create("Mary", "Frank"),
+			   // Tuple.Create("Karen", "Bob"),
+		    //};
 
-		    expected.ToExpectedObject().ShouldEqual(girlAndBoyPairs);
+		    //expected.ToExpectedObject().ShouldEqual(girlAndBoyPairs);
 	    }
 
-		private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Key> keys, IEnumerable<Girl> girls)
-		{
-			var firstEnumerator = keys.GetEnumerator();
-			var secondEnumerator = girls.GetEnumerator();
-			while (firstEnumerator.MoveNext() && secondEnumerator.MoveNext())
-			{
-				yield return Tuple.Create(secondEnumerator.Current.Name, firstEnumerator.Current.OwnerBoy.Name);
-			}
-		}
+		//private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Key> keys, IEnumerable<Girl> girls)
+		//{
+		//	var firstEnumerator = keys.GetEnumerator();
+		//	var secondEnumerator = girls.GetEnumerator();
+		//	while (firstEnumerator.MoveNext() && secondEnumerator.MoveNext())
+		//	{
+		//		yield return Tuple.Create(secondEnumerator.Current.Name, firstEnumerator.Current.OwnerBoy.Name);
+		//	}
+		//}
 
 	    private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Girl> girls, IEnumerable<Key> keys)
         {
