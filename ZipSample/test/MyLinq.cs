@@ -90,27 +90,7 @@ namespace ZipSample.test
 
 		public static IEnumerable<TSource> MyUnion<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second)
 		{
-			var hashSet = new HashSet<TSource>();
-
-			var firstEnumerator = first.GetEnumerator();
-	        
-			while (firstEnumerator.MoveNext())
-			{
-				if(hashSet.Add(firstEnumerator.Current))
-				{
-					yield return firstEnumerator.Current;
-				}
-			}
-
-			var secondEnumerator = second.GetEnumerator();
-
-			while (secondEnumerator.MoveNext())
-			{
-				if (hashSet.Add(secondEnumerator.Current))
-				{
-					yield return secondEnumerator.Current;
-				}
-			}
+			return MyUnion(first, second, EqualityComparer<TSource>.Default);
 		}
 
 		public static IEnumerable<TSource> MyUnion<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> equalityComparer)
