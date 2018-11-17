@@ -126,9 +126,9 @@ namespace ZipSample.test
 			return x.Name == y.Name;
 		}
 
-		public override int GetHashCode(Girl obj)
+		public override int GetHashCode(Girl girl)
 		{
-			return Tuple.Create(obj.Name).GetHashCode();
+			return Tuple.Create(girl.Name).GetHashCode();
 		}
 	}
 }
