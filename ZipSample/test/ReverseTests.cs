@@ -15,26 +15,10 @@ namespace ZipSample.test
         {
             var source = new string[] { "Apple", "Banana", "Cat" };
 
-            var actual = MyReverse(source).ToList();
+            var actual = source.MyReverse().ToList();
             var expected = new List<string> { "Cat", "Banana", "Apple" };
 
             expected.ToExpectedObject().ShouldEqual(actual);
         }
-
-	    public static IEnumerable<T> MyReverse<T>(IEnumerable<T> source)
-        {
-			//return new Stack<T>(source);
-			var myStack = new Stack<T>();
-			var enumerator = source.GetEnumerator();
-			while (enumerator.MoveNext())
-			{
-				myStack.Push(enumerator.Current);
-			}
-
-			while (myStack.Count > 0)
-			{
-				yield return myStack.Pop();
-			}
-		}
     }
 }

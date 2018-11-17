@@ -29,5 +29,21 @@ namespace ZipSample.test
 				yield return secondItem;
 			}
 		}
+
+		public static IEnumerable<Tsource> MyReverse<Tsource>(this IEnumerable<Tsource> source)
+		{
+			return new Stack<Tsource>(source);
+			//var myStack = new Stack<Tsource>();
+			//var enumerator = source.GetEnumerator();
+			//while (enumerator.MoveNext())
+			//{
+			//	myStack.Push(enumerator.Current);
+			//}
+
+			//while (myStack.Count > 0)
+			//{
+			//	yield return myStack.Pop();
+			//}
+		}
 	}
 }
