@@ -15,7 +15,7 @@ namespace ZipSample.test
             var girls = Repository.Get3Girls();
             var keys = Repository.Get5Keys();
 
-            var girlAndBoyPairs = MyZip(girls, keys, (firstElement, secondElement) => Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
+            var girlAndBoyPairs = MyLinq.MyZip(girls, keys, (firstElement, secondElement) => Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
             var expected = new List<Tuple<string, string>>
             {
                 Tuple.Create("Jean", "Joey"),
@@ -32,7 +32,7 @@ namespace ZipSample.test
 		    var girls = Repository.Get5Girls();
 		    var keys = Repository.Get3Keys();
 
-		    var girlAndBoyPairs = MyZip(girls, keys, (firstElement, secondElement) => Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
+		    var girlAndBoyPairs = MyLinq.MyZip(girls, keys, (firstElement, secondElement) => Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
 		    var expected = new List<Tuple<string, string>>
 		    {
 			    Tuple.Create("Jean", "Joey"),
@@ -49,7 +49,7 @@ namespace ZipSample.test
 			var girls = Repository.Get5Girls();
 			var keys = Repository.Get3Keys();
 
-			var girlAndBoyPairs = MyZip(keys, girls, (firstElement, secondElement) => Tuple.Create(secondElement.Name, firstElement.OwnerBoy.Name)).ToList();
+			var girlAndBoyPairs = MyLinq.MyZip(keys, girls, (firstElement, secondElement) => Tuple.Create(secondElement.Name, firstElement.OwnerBoy.Name)).ToList();
 			var expected = new List<Tuple<string, string>>
 			{
 				Tuple.Create("Jean", "Joey"),
@@ -58,18 +58,6 @@ namespace ZipSample.test
 			};
 
 			expected.ToExpectedObject().ShouldEqual(girlAndBoyPairs);
-		}
-
-	    public static IEnumerable<TResult> MyZip<TFirst, TSecond, TResult>(IEnumerable<TFirst> first, IEnumerable<TSecond> second, Func<TFirst, TSecond, TResult> selector)
-        {
-			var firstEnumerator = first.GetEnumerator();
-			var secondEnumerator = second.GetEnumerator();
-			while (firstEnumerator.MoveNext() && secondEnumerator.MoveNext())
-			{
-				var firstElement = firstEnumerator.Current;
-				var secondElement = secondEnumerator.Current;
-				yield return selector(firstElement, secondElement);
-			}
 		}
     }
 }

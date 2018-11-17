@@ -75,5 +75,17 @@ namespace ZipSample.test
 				}
 			}
 		}
+
+		public static IEnumerable<TResult> MyZip<TFirst, TSecond, TResult>(IEnumerable<TFirst> first, IEnumerable<TSecond> second, Func<TFirst, TSecond, TResult> selector)
+		{
+			var firstEnumerator = first.GetEnumerator();
+			var secondEnumerator = second.GetEnumerator();
+			while (firstEnumerator.MoveNext() && secondEnumerator.MoveNext())
+			{
+				var firstElement = firstEnumerator.Current;
+				var secondElement = secondEnumerator.Current;
+				yield return selector(firstElement, secondElement);
+			}
+		}
 	}
 }
