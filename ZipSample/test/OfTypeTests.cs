@@ -13,16 +13,23 @@ namespace ZipSample.test
         [TestMethod]
         public void pick_integer_from_ArrayList()
         {
-            var arrayList = new ArrayList { 2, "4", 6 };
+            var arrayList = new ArrayList { 2, "A", 6 };
             var actual = MyOfType(arrayList).ToList();
 
             var expected = new List<int> { 2, 6 };
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
-        private IEnumerable<int> MyOfType(ArrayList source)
+        private IEnumerable<int> MyOfType(IEnumerable source)
         {
-            throw new NotImplementedException();
+	        var enumerator = source.GetEnumerator();
+	        while (enumerator.MoveNext())
+	        {
+		        if (enumerator.Current is int)
+		        {
+			        yield return (int) enumerator.Current;
+		        }
+	        }
         }
     }
 }
