@@ -21,7 +21,7 @@ namespace ZipSample.test
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
-        private IEnumerable<TSource> MyUnion<TSource>(IEnumerable<TSource> first, IEnumerable<TSource> second)
+	    public static IEnumerable<TSource> MyUnion<TSource>(IEnumerable<TSource> first, IEnumerable<TSource> second)
         {
 	        var hashSet = new HashSet<TSource>();
 
