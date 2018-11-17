@@ -6,6 +6,15 @@ using System.Linq;
 
 namespace ZipSample.test
 {
+	public class Employee
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+
+		
+		
+	}
+
 	[TestClass]
     public class ConcatTests
     {
@@ -21,7 +30,31 @@ namespace ZipSample.test
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
-        private IEnumerable<int> MyConcat(IEnumerable<int> first, IEnumerable<int> second)
+		[TestMethod]
+	    public void concat_employee()
+		{
+			var first = new List<Employee>
+			{
+				new Employee() {Id = 1, Name = "AAA"},
+			};
+
+			var second = new List<Employee>
+			{
+				new Employee() {Id = 2, Name = "BBB"},
+				new Employee() {Id = 3, Name = "CCC"}
+			};
+
+			var actual = MyConcat(first, second).ToList();
+			var expected = new List<Employee>()
+			{
+				new Employee() {Id = 1, Name = "AAA"},
+				new Employee() {Id = 2, Name = "BBB"},
+				new Employee() {Id = 3, Name = "CCC"}
+			};
+			expected.ToExpectedObject().ShouldEqual(actual);
+		}
+
+	    private IEnumerable<TSource> MyConcat<TSource>(IEnumerable<TSource> first, IEnumerable<TSource> second)
         {
 	        //var firstEnumerator = first.GetEnumerator();
 	        //while (firstEnumerator.MoveNext())
