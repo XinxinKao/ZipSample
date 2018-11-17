@@ -20,7 +20,7 @@ namespace ZipSample.test
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
-        private IEnumerable<TResult> MyOfType<TResult>(IEnumerable source)
+	    public static IEnumerable<TResult> MyOfType<TResult>(IEnumerable source)
         {
 	        var enumerator = source.GetEnumerator();
 	        while (enumerator.MoveNext())
