@@ -10,9 +10,6 @@ namespace ZipSample.test
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-
-		
-		
 	}
 
 	[TestClass]
@@ -24,7 +21,7 @@ namespace ZipSample.test
             var first = new int[] {1, 3, 5};
             var second = new int[] {2, 4, 6};
 
-            var actual = MyConcat(first, second).ToArray();
+	        var actual = first.MyConcat(second).ToArray();
 
             var expected = new int[] {1, 3, 5, 2, 4, 6};
             expected.ToExpectedObject().ShouldEqual(actual);
@@ -44,7 +41,7 @@ namespace ZipSample.test
 				new Employee() {Id = 3, Name = "CCC"}
 			};
 
-			var actual = MyConcat(first, second).ToList();
+			var actual = first.MyConcat(second).ToList();
 			var expected = new List<Employee>()
 			{
 				new Employee() {Id = 1, Name = "AAA"},
@@ -53,27 +50,5 @@ namespace ZipSample.test
 			};
 			expected.ToExpectedObject().ShouldEqual(actual);
 		}
-
-	    private IEnumerable<TSource> MyConcat<TSource>(IEnumerable<TSource> first, IEnumerable<TSource> second)
-        {
-	        //var firstEnumerator = first.GetEnumerator();
-	        //while (firstEnumerator.MoveNext())
-	        //{
-		       // yield return firstEnumerator.Current;
-	        //}
-	        //var secondEnumerator = second.GetEnumerator();
-	        //while (secondEnumerator.MoveNext())
-	        //{
-		       // yield return secondEnumerator.Current;
-	        //}
-	        foreach (var firstItem in first)
-	        {
-		        yield return firstItem;
-	        }
-			foreach (var secondItem in second)
-	        {
-		        yield return secondItem;
-	        }
-        }
     }
 }
