@@ -145,12 +145,12 @@ namespace ZipSample.test
 	{
 		public bool Equals(Girl x, Girl y)
 		{
-			throw new NotImplementedException();
+			return x.Name == y.Name;
 		}
 
 		public int GetHashCode(Girl obj)
 		{
-			throw new NotImplementedException();
+			return Tuple.Create(obj.Name).GetHashCode();
 		}
 	}
 }
