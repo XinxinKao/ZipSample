@@ -15,7 +15,7 @@ namespace ZipSample.test
             var girls = Repository.Get3Girls();
             var keys = Repository.Get5Keys();
 
-            var girlAndBoyPairs = MyLinq.MyZip(girls, keys, (firstElement, secondElement) => Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
+            var girlAndBoyPairs = girls.MyZip(keys, (firstElement, secondElement) => Tuple.Create<string, string>(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
             var expected = new List<Tuple<string, string>>
             {
                 Tuple.Create("Jean", "Joey"),
@@ -32,7 +32,7 @@ namespace ZipSample.test
 		    var girls = Repository.Get5Girls();
 		    var keys = Repository.Get3Keys();
 
-		    var girlAndBoyPairs = MyLinq.MyZip(girls, keys, (firstElement, secondElement) => Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
+		    var girlAndBoyPairs = girls.MyZip(keys, (firstElement, secondElement) => Tuple.Create<string, string>(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
 		    var expected = new List<Tuple<string, string>>
 		    {
 			    Tuple.Create("Jean", "Joey"),
@@ -49,7 +49,7 @@ namespace ZipSample.test
 			var girls = Repository.Get5Girls();
 			var keys = Repository.Get3Keys();
 
-			var girlAndBoyPairs = MyLinq.MyZip(keys, girls, (firstElement, secondElement) => Tuple.Create(secondElement.Name, firstElement.OwnerBoy.Name)).ToList();
+			var girlAndBoyPairs = keys.MyZip(girls, (firstElement, secondElement) => Tuple.Create<string, string>(secondElement.Name, firstElement.OwnerBoy.Name)).ToList();
 			var expected = new List<Tuple<string, string>>
 			{
 				Tuple.Create("Jean", "Joey"),
