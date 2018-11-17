@@ -25,9 +25,9 @@ namespace ZipSample.test
 	        var enumerator = source.GetEnumerator();
 	        while (enumerator.MoveNext())
 	        {
-		        if (enumerator.Current is int)
+		        if (enumerator.Current is int current)
 		        {
-			        yield return (int) enumerator.Current;
+			        yield return current;
 		        }
 	        }
         }
