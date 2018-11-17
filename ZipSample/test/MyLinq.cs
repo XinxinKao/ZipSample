@@ -115,7 +115,7 @@ namespace ZipSample.test
 
 		public static IEnumerable<Girl> MyUnion(this IEnumerable<Girl> first, IEnumerable<Girl> second)
 		{
-			var hashSet = new HashSet<string>();
+			var hashSet = new HashSet<string>(new GirlEqualityComparer());
 
 			var firstEnumerator = first.GetEnumerator();
 	        
@@ -138,6 +138,19 @@ namespace ZipSample.test
 					yield return secondElement;
 				}
 			}
+		}
+	}
+
+	public class GirlEqualityComparer : IEqualityComparer<Girl>
+	{
+		public bool Equals(Girl x, Girl y)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetHashCode(Girl obj)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
