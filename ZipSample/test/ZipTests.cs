@@ -28,7 +28,12 @@ namespace ZipSample.test
 
         private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Girl> girls, IEnumerable<Key> keys)
         {
-            throw new NotImplementedException();
+	        var girlsEnumerator = girls.GetEnumerator();
+	        var keysEnumerator = keys.GetEnumerator();
+	        while (girlsEnumerator.MoveNext() && keysEnumerator.MoveNext())
+	        {
+		        yield return Tuple.Create(girlsEnumerator.Current.Name, keysEnumerator.Current.OwnerBoy.Name);
+	        }
         }
     }
 }
