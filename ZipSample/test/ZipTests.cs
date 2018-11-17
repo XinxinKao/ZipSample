@@ -15,7 +15,7 @@ namespace ZipSample.test
             var girls = Repository.Get3Girls();
             var keys = Repository.Get5Keys();
 
-            var girlAndBoyPairs = MyZip(girls, keys).ToList();
+            var girlAndBoyPairs = MyZip(girls, keys, (firstElement, secondElement) => Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
             var expected = new List<Tuple<string, string>>
             {
                 Tuple.Create("Jean", "Joey"),
@@ -32,7 +32,7 @@ namespace ZipSample.test
 		    var girls = Repository.Get5Girls();
 		    var keys = Repository.Get3Keys();
 
-		    var girlAndBoyPairs = MyZip(girls, keys).ToList();
+		    var girlAndBoyPairs = MyZip(girls, keys, (firstElement, secondElement) => Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name)).ToList();
 		    var expected = new List<Tuple<string, string>>
 		    {
 			    Tuple.Create("Jean", "Joey"),
@@ -70,7 +70,7 @@ namespace ZipSample.test
 		//	}
 		//}
 
-	    private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Girl> girls, IEnumerable<Key> keys)
+	    private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Girl> girls, IEnumerable<Key> keys, Func<Girl, Key, Tuple<string, string>> selector)
         {
 			var firstEnumerator = girls.GetEnumerator();
 			var secondEnumerator = keys.GetEnumerator();
@@ -78,7 +78,7 @@ namespace ZipSample.test
 			{
 				var firstElement = firstEnumerator.Current;
 				var secondElement = secondEnumerator.Current;
-				yield return Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name);
+				yield return selector(firstElement, secondElement);
 			}
 		}
     }
