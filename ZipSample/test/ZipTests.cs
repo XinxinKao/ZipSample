@@ -70,10 +70,10 @@ namespace ZipSample.test
 		//	}
 		//}
 
-	    private IEnumerable<TResult> MyZip<TFirst, TSecond, TResult>(IEnumerable<TFirst> girls, IEnumerable<TSecond> keys, Func<TFirst, TSecond, TResult> selector)
+	    private IEnumerable<TResult> MyZip<TFirst, TSecond, TResult>(IEnumerable<TFirst> first, IEnumerable<TSecond> second, Func<TFirst, TSecond, TResult> selector)
         {
-			var firstEnumerator = girls.GetEnumerator();
-			var secondEnumerator = keys.GetEnumerator();
+			var firstEnumerator = first.GetEnumerator();
+			var secondEnumerator = second.GetEnumerator();
 			while (firstEnumerator.MoveNext() && secondEnumerator.MoveNext())
 			{
 				var firstElement = firstEnumerator.Current;
