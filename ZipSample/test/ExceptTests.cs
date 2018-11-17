@@ -23,7 +23,7 @@ namespace ZipSample.test
 	    [TestMethod]
 	    public void Except_integers_second()
 	    {
-		    var first = new List<int> { 1, 3, 5, 4 };
+		    var first = new List<int> { 1, 4, 3, 5, 4 };
 		    var second = new List<int> { 5, 3, 7, 9 };
 
 		    var expected = new List<int> { 7, 9 };
