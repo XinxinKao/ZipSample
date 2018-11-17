@@ -1,6 +1,7 @@
 ﻿using ExpectedObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,9 +21,20 @@ namespace ZipSample.test
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
-        private IEnumerable<string> MyReverse(string[] source)
+	    public static IEnumerable<T> MyReverse<T>(IEnumerable<T> source)
         {
-            throw new NotImplementedException();
-        }
+			//return new Stack<T>(source);
+			var myStack = new Stack<T>();
+			var enumerator = source.GetEnumerator();
+			while (enumerator.MoveNext())
+			{
+				myStack.Push(enumerator.Current);
+			}
+
+			while (myStack.Count > 0)
+			{
+				yield return myStack.Pop();
+			}
+		}
     }
 }
