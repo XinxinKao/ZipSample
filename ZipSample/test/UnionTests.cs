@@ -17,7 +17,7 @@ namespace ZipSample.test
 
             var expected = new List<int> { 1, 3, 5, 7, 9 };
 
-            var actual = MyLinq.MyUnion(first, second).ToList();
+            var actual = first.MyUnion(second).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
         }
     }

@@ -88,7 +88,7 @@ namespace ZipSample.test
 			}
 		}
 
-		public static IEnumerable<TSource> MyUnion<TSource>(IEnumerable<TSource> first, IEnumerable<TSource> second)
+		public static IEnumerable<TSource> MyUnion<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second)
 		{
 			var hashSet = new HashSet<TSource>();
 
