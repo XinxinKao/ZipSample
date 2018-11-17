@@ -119,14 +119,14 @@ namespace ZipSample.test
 		}
 	}
 
-	public class GirlEqualityComparer : IEqualityComparer<Girl>
+	public class GirlEqualityComparer : EqualityComparer<Girl>
 	{
-		public bool Equals(Girl x, Girl y)
+		public override bool Equals(Girl x, Girl y)
 		{
 			return x.Name == y.Name;
 		}
 
-		public int GetHashCode(Girl obj)
+		public override int GetHashCode(Girl obj)
 		{
 			return Tuple.Create(obj.Name).GetHashCode();
 		}
