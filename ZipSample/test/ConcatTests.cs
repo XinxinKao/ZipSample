@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ZipSample.test
 {
-    [TestClass]
+	[TestClass]
     public class ConcatTests
     {
         [TestMethod]
@@ -23,7 +23,24 @@ namespace ZipSample.test
 
         private IEnumerable<int> MyConcat(IEnumerable<int> first, IEnumerable<int> second)
         {
-            throw new NotImplementedException();
+	        //var firstEnumerator = first.GetEnumerator();
+	        //while (firstEnumerator.MoveNext())
+	        //{
+		       // yield return firstEnumerator.Current;
+	        //}
+	        //var secondEnumerator = second.GetEnumerator();
+	        //while (secondEnumerator.MoveNext())
+	        //{
+		       // yield return secondEnumerator.Current;
+	        //}
+	        foreach (var firstItem in first)
+	        {
+		        yield return firstItem;
+	        }
+			foreach (var secondItem in second)
+	        {
+		        yield return secondItem;
+	        }
         }
     }
 }
