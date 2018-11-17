@@ -26,7 +26,7 @@ namespace ZipSample.test
         {
             var arrayList = new ArrayList { 2, "4", 6 };
             Action action = () => MyCast<int>(arrayList).ToList();
-            action.Should().Throw<InvalidCastException>();
+            action.Should().Throw<XinyiException>();
         }
 
         private IEnumerable<TResult> MyCast<TResult>(IEnumerable arrayList)
@@ -35,8 +35,19 @@ namespace ZipSample.test
 			
 			while (enumerator.MoveNext())
 			{
-				yield return (TResult)enumerator.Current;
+				if (enumerator.Current is TResult)
+				{
+					yield return (TResult)enumerator.Current;
+				}
+				else
+				{
+					throw new XinyiException();
+				}
 			}
 		}
     }
+
+	public class XinyiException : Exception
+	{
+	}
 }
