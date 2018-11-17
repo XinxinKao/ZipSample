@@ -115,16 +115,15 @@ namespace ZipSample.test
 
 		public static IEnumerable<Girl> MyUnion(this IEnumerable<Girl> first, IEnumerable<Girl> second)
 		{
-			var hashSet = new HashSet<string>(new GirlEqualityComparer());
+			var hashSet = new HashSet<Girl>(new GirlEqualityComparer());
 
 			var firstEnumerator = first.GetEnumerator();
 	        
 			while (firstEnumerator.MoveNext())
 			{
-				var firstElement = firstEnumerator.Current;
-				if(hashSet.Add(firstElement.Name))
+				if(hashSet.Add(firstEnumerator.Current))
 				{
-					yield return firstElement;
+					yield return firstEnumerator.Current;
 				}
 			}
 
@@ -132,10 +131,9 @@ namespace ZipSample.test
 
 			while (secondEnumerator.MoveNext())
 			{
-				var secondElement = secondEnumerator.Current;
-				if (hashSet.Add(secondElement.Name))
+				if (hashSet.Add(secondEnumerator.Current))
 				{
-					yield return secondElement;
+					yield return secondEnumerator.Current;
 				}
 			}
 		}
