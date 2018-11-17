@@ -76,7 +76,9 @@ namespace ZipSample.test
 			var secondEnumerator = keys.GetEnumerator();
 			while (firstEnumerator.MoveNext() && secondEnumerator.MoveNext())
 			{
-				yield return Tuple.Create(firstEnumerator.Current.Name, secondEnumerator.Current.OwnerBoy.Name);
+				var firstElement = firstEnumerator.Current;
+				var secondElement = secondEnumerator.Current;
+				yield return Tuple.Create(firstElement.Name, secondElement.OwnerBoy.Name);
 			}
 		}
     }
