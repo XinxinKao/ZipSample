@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ZipSample.test
 {
@@ -16,13 +17,33 @@ namespace ZipSample.test
 
             var expected = new List<int> { 1, 3, 5, 7, 9 };
 
-            var actual = MyUnion(first, second);
+            var actual = MyUnion(first, second).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
         }
 
         private IEnumerable<int> MyUnion(IEnumerable<int> first, IEnumerable<int> second)
         {
-            throw new NotImplementedException();
+	        var hashSet = new HashSet<int>();
+
+	        var firstEnumerator = first.GetEnumerator();
+	        
+	        while (firstEnumerator.MoveNext())
+	        {
+		        if(hashSet.Add(firstEnumerator.Current))
+		        {
+			        yield return firstEnumerator.Current;
+		        }
+	        }
+
+	        var secondEnumerator = second.GetEnumerator();
+
+	        while (secondEnumerator.MoveNext())
+	        {
+		        if (hashSet.Add(secondEnumerator.Current))
+		        {
+			        yield return secondEnumerator.Current;
+		        }
+	        }
         }
     }
 }
