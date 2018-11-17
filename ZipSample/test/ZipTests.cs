@@ -52,9 +52,9 @@ namespace ZipSample.test
 		    var girlAndBoyPairs = MyZip(keys, girls).ToList();
 		    var expected = new List<Tuple<string, string>>
 		    {
-			    Tuple.Create("Joey", "Jean"),
-			    Tuple.Create("Frank", "Mary"),
-			    Tuple.Create("Bob", "Karen"),
+			    Tuple.Create("Jean", "Joey"),
+			    Tuple.Create("Mary", "Frank"),
+			    Tuple.Create("Karen", "Bob"),
 		    };
 
 		    expected.ToExpectedObject().ShouldEqual(girlAndBoyPairs);
@@ -66,11 +66,11 @@ namespace ZipSample.test
 			var secondEnumerator = girls.GetEnumerator();
 			while (firstEnumerator.MoveNext() && secondEnumerator.MoveNext())
 			{
-				yield return Tuple.Create(firstEnumerator.Current.OwnerBoy.Name, secondEnumerator.Current.Name);
+				yield return Tuple.Create(secondEnumerator.Current.Name, firstEnumerator.Current.OwnerBoy.Name);
 			}
 		}
 
-		private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Girl> girls, IEnumerable<Key> keys)
+	    private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Girl> girls, IEnumerable<Key> keys)
         {
 			var firstEnumerator = girls.GetEnumerator();
 			var secondEnumerator = keys.GetEnumerator();
