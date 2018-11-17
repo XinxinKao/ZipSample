@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,23 @@ namespace ZipSample.test
 			//{
 			//	yield return myStack.Pop();
 			//}
+		}
+
+		public static IEnumerable<TResult> MyCast<TResult>(this IEnumerable arrayList)
+		{
+			var enumerator = arrayList.GetEnumerator();
+			
+			while (enumerator.MoveNext())
+			{
+				if (enumerator.Current is TResult)
+				{
+					yield return (TResult)enumerator.Current;
+				}
+				else
+				{
+					throw new XinyiException();
+				}
+			}
 		}
 	}
 }
