@@ -70,7 +70,7 @@ namespace ZipSample.test
 		//	}
 		//}
 
-	    private IEnumerable<Tuple<string, string>> MyZip(IEnumerable<Girl> girls, IEnumerable<Key> keys, Func<Girl, Key, Tuple<string, string>> selector)
+	    private IEnumerable<Tuple<string, string>> MyZip<TFirst, TSecond>(IEnumerable<TFirst> girls, IEnumerable<TSecond> keys, Func<TFirst, TSecond, Tuple<string, string>> selector)
         {
 			var firstEnumerator = girls.GetEnumerator();
 			var secondEnumerator = keys.GetEnumerator();
