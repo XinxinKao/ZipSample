@@ -112,5 +112,32 @@ namespace ZipSample.test
 				}
 			}
 		}
+
+		public static IEnumerable<Girl> MyUnion(this IEnumerable<Girl> first, IEnumerable<Girl> second)
+		{
+			var hashSet = new HashSet<string>();
+
+			var firstEnumerator = first.GetEnumerator();
+	        
+			while (firstEnumerator.MoveNext())
+			{
+				var firstElement = firstEnumerator.Current;
+				if(hashSet.Add(firstElement.Name))
+				{
+					yield return firstElement;
+				}
+			}
+
+			var secondEnumerator = second.GetEnumerator();
+
+			while (secondEnumerator.MoveNext())
+			{
+				var secondElement = secondEnumerator.Current;
+				if (hashSet.Add(secondElement.Name))
+				{
+					yield return secondElement;
+				}
+			}
+		}
 	}
 }
