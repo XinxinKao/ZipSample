@@ -29,7 +29,7 @@ namespace ZipSample.test
 
 		    var expected = new List<Girl> { new Girl() { Name = "Amanda" }, new Girl() { Name = "Lucy" }, new Girl() { Name = "Xinyi" } };
 
-		    var actual = first.MyUnion(second).ToList();
+		    var actual = first.MyUnion(second, new GirlEqualityComparer()).ToList();
 		    expected.ToExpectedObject().ShouldEqual(actual);
 	    }
     }
