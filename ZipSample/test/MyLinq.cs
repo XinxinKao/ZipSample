@@ -63,5 +63,17 @@ namespace ZipSample.test
 				}
 			}
 		}
+
+		public static IEnumerable<TResult> MyOfType<TResult>(IEnumerable source)
+		{
+			var enumerator = source.GetEnumerator();
+			while (enumerator.MoveNext())
+			{
+				if (enumerator.Current is TResult current)
+				{
+					yield return current;
+				}
+			}
+		}
 	}
 }
