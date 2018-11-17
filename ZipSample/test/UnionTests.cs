@@ -17,33 +17,8 @@ namespace ZipSample.test
 
             var expected = new List<int> { 1, 3, 5, 7, 9 };
 
-            var actual = MyUnion(first, second).ToList();
+            var actual = MyLinq.MyUnion(first, second).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
-        }
-
-	    public static IEnumerable<TSource> MyUnion<TSource>(IEnumerable<TSource> first, IEnumerable<TSource> second)
-        {
-	        var hashSet = new HashSet<TSource>();
-
-	        var firstEnumerator = first.GetEnumerator();
-	        
-	        while (firstEnumerator.MoveNext())
-	        {
-		        if(hashSet.Add(firstEnumerator.Current))
-		        {
-			        yield return firstEnumerator.Current;
-		        }
-	        }
-
-	        var secondEnumerator = second.GetEnumerator();
-
-	        while (secondEnumerator.MoveNext())
-	        {
-		        if (hashSet.Add(secondEnumerator.Current))
-		        {
-			        yield return secondEnumerator.Current;
-		        }
-	        }
         }
     }
 }

@@ -87,5 +87,30 @@ namespace ZipSample.test
 				yield return selector(firstElement, secondElement);
 			}
 		}
+
+		public static IEnumerable<TSource> MyUnion<TSource>(IEnumerable<TSource> first, IEnumerable<TSource> second)
+		{
+			var hashSet = new HashSet<TSource>();
+
+			var firstEnumerator = first.GetEnumerator();
+	        
+			while (firstEnumerator.MoveNext())
+			{
+				if(hashSet.Add(firstEnumerator.Current))
+				{
+					yield return firstEnumerator.Current;
+				}
+			}
+
+			var secondEnumerator = second.GetEnumerator();
+
+			while (secondEnumerator.MoveNext())
+			{
+				if (hashSet.Add(secondEnumerator.Current))
+				{
+					yield return secondEnumerator.Current;
+				}
+			}
+		}
 	}
 }
