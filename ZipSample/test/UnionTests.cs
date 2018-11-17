@@ -20,5 +20,17 @@ namespace ZipSample.test
             var actual = first.MyUnion(second).ToList();
             expected.ToExpectedObject().ShouldEqual(actual);
         }
+
+	    [TestMethod]
+	    public void Union_girls()
+	    {
+		    var first = new List<Girl> { new Girl() { Name = "Amanda" }, new Girl() { Name = "Lucy" } };
+		    var second = new List<Girl> { new Girl() { Name = "Lucy" }, new Girl() { Name = "Xinyi" } };
+
+		    var expected = new List<Girl> { new Girl() { Name = "Amanda" }, new Girl() { Name = "Lucy" }, new Girl() { Name = "Xinyi" } };
+
+		    var actual = first.MyUnion(second).ToList();
+		    expected.ToExpectedObject().ShouldEqual(actual);
+	    }
     }
 }
