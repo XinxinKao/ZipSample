@@ -113,9 +113,9 @@ namespace ZipSample.test
 			}
 		}
 
-		public static IEnumerable<Girl> MyUnion(this IEnumerable<Girl> first, IEnumerable<Girl> second, GirlEqualityComparer equalityComparer)
+		public static IEnumerable<TSource> MyUnion<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second, IEqualityComparer<TSource> equalityComparer)
 		{
-			var hashSet = new HashSet<Girl>(equalityComparer);
+			var hashSet = new HashSet<TSource>(equalityComparer);
 
 			var firstEnumerator = first.GetEnumerator();
 	        
