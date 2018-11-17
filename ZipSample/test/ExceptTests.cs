@@ -11,7 +11,7 @@ namespace ZipSample.test
         [TestMethod]
         public void Except_integers()
         {
-            var first = new List<int> { 1, 3, 5, 4 };
+            var first = new List<int> { 1, 4, 3, 5, 4 };
             var second = new List<int> { 5, 3, 7, 9 };
 
             var expected = new List<int> { 1, 4 };
@@ -22,7 +22,16 @@ namespace ZipSample.test
 
         private IEnumerable<int> MyExcept(IEnumerable<int> first, IEnumerable<int> second)
         {
-            throw new System.NotImplementedException();
+	        var hashSet = new HashSet<int>(second);
+
+	        var firstEnumerator = first.GetEnumerator();
+	        while (firstEnumerator.MoveNext())
+	        {
+		        if (hashSet.Add(firstEnumerator.Current))
+		        {
+			        yield return firstEnumerator.Current;
+		        }
+	        }
         }
     }
 }
